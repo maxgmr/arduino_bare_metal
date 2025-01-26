@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "" ]; then
+    >&2 echo "No project name given."
+    exit 1
+fi
+
+PROJ_NAME=$1
+mkdir -p ./${PROJ_NAME}/{src,build}
+cp ./base_proj/base.c ./${PROJ_NAME}/src/${PROJ_NAME}.c
+cp ./base_proj/.clangd ./${PROJ_NAME}
+cp ./base_proj/base_gitignore ./${PROJ_NAME}/build/.gitignore
+cp ./base_proj/Makefile ./${PROJ_NAME}
+chmod +w ${PROJ_NAME}/.clangd
+chmod +w ${PROJ_NAME}/src/${PROJ_NAME}.c
+chmod +w ${PROJ_NAME}/Makefile
+exit 0
