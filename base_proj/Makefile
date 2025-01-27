@@ -12,21 +12,24 @@ BAUD_RATE ?= 115200
 build:
 	avr-gcc \
 		-Os \
+		-Wall \
+		-Wextra \
+		-ffreestanding \
 		-DF_CPU=$(DF_CPU) \
 		-mmcu=$(PART) \
 		-c \
 		-o $(BUILD_DIR)/$(MAIN_NAME).o \
-		$(SRC_DIR)/$(MAIN_NAME).c
+		$(SRC_DIR)/$(MAIN_NAME).c && \
 	avr-gcc \
 		-DF_CPU=$(DF_CPU) \
 		-mmcu=$(PART) \
-		-o $(BUILD_DIR)/$(MAIN_NAME).bin $(BUILD_DIR)/$(MAIN_NAME).o
+		-o $(BUILD_DIR)/$(MAIN_NAME).bin $(BUILD_DIR)/$(MAIN_NAME).o && \
 	avr-objcopy \
 		-O ihex \
 		-R .eeprom \
 		$(BUILD_DIR)/$(MAIN_NAME).bin $(BUILD_DIR)/$(MAIN_NAME).hex
 
-upload:
+flash:
 	avrdude \
 		-F \
 		-V \
