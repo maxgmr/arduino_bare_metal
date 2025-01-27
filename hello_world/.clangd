@@ -1,0 +1,11 @@
+CompileFlags:
+  Add:
+    - -I/usr/avr/include
+    - -Os
+    - -DF_CPU=16000000UL
+    - -mmcu=atmega328p
+    - -ffreestanding
+  Remove:
+    - -m*
+    - -f*
+  Compiler: avr-gcc
