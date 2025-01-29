@@ -2,6 +2,8 @@ CompileFlags:
   Add:
     - -I/usr/avr/include
     - -Os
+    - -Wall
+    - -Wextra
     - -DF_CPU=16000000UL
     - -mmcu=atmega328p
     - -ffreestanding
