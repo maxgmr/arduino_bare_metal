@@ -40,7 +40,7 @@ flash:
 		-U flash:w:$(BUILD_DIR)/$(MAIN_NAME).hex
 
 clean:
-	find . -type f ! -name '.gitignore' -delete
+	find $(BUILD_DIR) -type f ! -name '.gitignore' -delete
 
 printvars:
 	$(info mkfile_path=$(mkfile_path))
