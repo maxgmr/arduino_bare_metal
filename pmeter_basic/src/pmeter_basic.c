@@ -4,6 +4,11 @@
 #include "../../libs/adcr.h"
 #include "../../libs/bitops.h"
 #include "../../libs/dataconv.h"
+
+// Set UART to transmission only
+#define UART_TX 1;
+#define UART_RX 0;
+
 #include "../../libs/uarti.h"
 #include "../../libs/uartw.h"
 
