@@ -9,14 +9,11 @@ SRC_DIR ?= src
 DEVICE_PORT ?= /dev/ttyACM0
 BAUD_RATE ?= 115200
 
+CFLAGS = -Os -Wall -Wextra -ffreestanding -DF_CPU=$(DF_CPU) -mmcu=$(PART)
+
 build:
 	avr-gcc \
-		-Os \
-		-Wall \
-		-Wextra \
-		-ffreestanding \
-		-DF_CPU=$(DF_CPU) \
-		-mmcu=$(PART) \
+		$(CFLAGS) \
 		-c \
 		-o $(BUILD_DIR)/$(MAIN_NAME).o \
 		$(SRC_DIR)/$(MAIN_NAME).c && \
