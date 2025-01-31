@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <util/delay.h>
 
 #include "./datachk.h"
@@ -30,14 +31,16 @@ uint8_t char_to_index(char c) {
 }
 
 void blink_char(char input_c, void (*dit_fn)(void), void (*dah_fn)(void)) {
-    uint8_t i = char_to_index(input_c);
-    for (char c = *morse_strs[i]; c != '\0'; c = *++morse_strs[i]) {
-        if (c == '-') {
+    uint8_t morse_index = char_to_index(input_c);
+    const char *c = morse_strs[morse_index];
+    while (*c) {
+        if (*c == '-') {
             dah_fn();
-        } else if (c == '.') {
+        } else if (*c == '.') {
             dit_fn();
         }
         _delay_ms(SPACE);
+        c++;
     }
     _delay_ms(L_SPACE_AFTER);
 }
